@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#E8EBE6">
+<title>Cipher – Decode your mind. Keep it yours.</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@500;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+
+<main>
+  <header>
+    <h1 class="logo"><i class="mark"></i>cipher</h1>
+    <span class="lock">🔒 Private · on this device</span>
+  </header>
+
+  <div id="today">
+    <section class="hero">
+      <p class="date" id="date"></p>
+      <h2 id="hi"></h2>
+      <p class="lede">Tap what fits. Cipher turns it into a plan. <em>Decode your mind. Keep it yours.</em></p>
+    </section>
+
+    <section class="card pet" id="petCard">
+      <div class="pav" id="pAv"></div>
+      <div class="pin"><div class="pname"><b id="pN"></b><span id="pL"></span></div><div class="xp"><i id="xpf"></i></div><p id="pSay"></p></div>
+    </section>
+
+    <div class="stats" id="stats"></div>
+
+    <div class="grid">
+      <div class="col">
+        <section class="card">
+          <h3>How are you feeling?</h3>
+          <div class="moods" id="moods"></div>
+          <p class="hint">What’s on your mind? <span>(optional)</span></p>
+          <div class="chips" id="tags"></div>
+        </section>
+        <section class="card rec" id="rec"></section>
+      </div>
+
+      <div class="col">
+        <section class="card" id="habitCard">
+          <div class="calm-msg">
+            <h3>Habits are resting today.</h3>
+            <p class="sub">Your streak is protected. Nothing to catch up on.</p>
+            <button class="btn" id="showh">Show them anyway</button>
+          </div>
+          <div id="hbody">
+            <div class="top">
+              <svg viewBox="0 0 80 80" class="ring" aria-hidden="true">
+                <defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--a1)"/><stop offset="1" style="stop-color:var(--warm)"/></linearGradient></defs>
+                <circle cx="40" cy="40" r="34" class="trk"/>
+                <circle cx="40" cy="40" r="34" class="prg" id="prg"/>
+              </svg>
+              <div><h3>Your habits</h3><p class="sub" id="streak"></p></div>
+            </div>
+            <div id="hlist"></div>
+            <form id="hf" autocomplete="off">
+              <input id="hin" maxlength="40" placeholder="Add a habit of your own…" aria-label="New habit">
+              <button class="btn" type="submit">Add</button>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div id="talk" hidden>
+    <section class="hero"><h2>Talk to <span id="tn">Cipher</span></h2><p class="lede">Say anything, in your own words. I’ll listen and we’ll find something that helps. I’m a companion, not a replacement for professional care.</p></section>
+    <section class="card chat">
+      <div id="msgs"></div>
+      <div class="chips" id="qs"></div>
+      <form id="cf" autocomplete="off">
+        <input class="fld" id="cin" placeholder="Tell me what’s on your mind…" aria-label="Message">
+        <button class="btn" type="submit">Send</button>
+      </form>
+      <label class="sp"><input type="checkbox" id="spk"> Read replies aloud</label>
+    </section>
+  </div>
+
+  <div id="insights" hidden>
+    <section class="hero"><h2>Insights</h2><p class="lede">Patterns Cipher found in your own logs. Calculated on this device.</p></section>
+    <div class="grid">
+      <div class="col">
+        <section class="card"><h3>Your week</h3><p class="sub">Average mood per day</p><div class="week" id="week"></div></section>
+        <section class="card">
+          <h3>Your data</h3>
+          <p class="sub">Nothing is ever uploaded. You decide what happens to it.</p>
+          <div class="row"><button class="btn ghost" id="editp">Edit profile</button><button class="btn ghost" id="demo">Load demo data</button><button class="btn ghost" id="exp">Export</button><button class="btn ghost" id="clr">Erase all</button></div>
+        </section>
+      </div>
+      <div class="col"><section class="card"><h3>What helps you</h3><p class="sub">Habits linked to better days</p><div id="ins"></div></section></div>
+    </div>
+  </div>
+</main>
+
+<nav class="bar" role="tablist">
+  <button role="tab" aria-selected="true" data-tab="today">Today</button>
+  <button role="tab" aria-selected="false" data-tab="talk">Talk</button>
+  <button role="tab" aria-selected="false" data-tab="insights">Insights</button>
+</nav>
+
+<div id="pacer" role="dialog" aria-label="Guided exercise">
+  <div id="orb"></div>
+  <div class="gtxt"><p id="pr"></p><h2 id="ph"></h2><div id="num"></div><p id="pt"></p></div>
+  <div class="row"><button class="btn ghost" id="pnext">Next</button><button class="btn" id="pclose">Close</button></div>
+</div>
+
+<div id="ob" class="ov" hidden>
+  <form class="card" id="obf" autocomplete="off">
+    <h2>Welcome to Cipher</h2>
+    <p class="sub">Everything stays on this device. What should I call you?</p>
+    <input class="fld" id="obn" required maxlength="24" placeholder="Your name" aria-label="Your name">
+    <p class="hint">Choose a companion</p>
+    <div class="chips" id="obp"></div>
+    <input class="fld" id="obpn" maxlength="20" placeholder="Name your companion" aria-label="Companion name">
+    <button class="btn" type="submit">Let’s begin</button>
+  </form>
+</div>
+
+<script src="bg.js"></script>
+<script src="brain.js"></script>
+<script src="app.js"></script>
+<script src="companion.js"></script>
+</body>
+</html>
